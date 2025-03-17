@@ -1,11 +1,11 @@
 //importar la libreria mongoose 
-import mongoose, {mongo} from "mongoose";
+import mongoose from "mongoose";
 import { config } from "./src/config.js";
 
 //Guardo en una constante la url de mi base de datos
 
 
-mongoose.connect(config.MONGO_URI);
+mongoose.connect(config.db.URI);
 
 // --------------------------------- comprobar que todo funcione
 
