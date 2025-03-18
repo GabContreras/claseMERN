@@ -1,6 +1,6 @@
 /*
 Este archivo sirve para definir que metodos del CRUD va a tener mi ruta 
-(/api/employees)
+(/api/reviews)
 */
 
 import express from 'express';
