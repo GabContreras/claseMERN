@@ -21,9 +21,9 @@ employeesController.insertEmployee = async (req, res) => {
 }
 //UPDATE
 employeesController.updateEmployee = async (req, res) => {
-    const { id } = req.params;
     const { name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified } = req.body;
-    await employeesModel.findByIdAndUpdate(id, { name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified });
+    const updateEmployees = await clientsModel.findByIdAndUpdate(req.params.id,
+        { name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified }, { new: true });
     res.json({ message: "Employee updated" });
 }
 
