@@ -24,17 +24,18 @@ registerEmployeesController.register = async (req, res) => {
         //--> TOKEN <--
         jsonwebtoken.sign(
             //1- Que voy a guardar
-            {id: newEmployee._id},
+            { id: newEmployee._id },
             //2-secreto 
             config.JWT.secret,
             //3- cuándo expira
-            {expiresIn: config.JWT.expiresIn},
+            { expiresIn: config.JWT.expiresIn },
             //4- función flecha
-            (error,token)=>{
-                if(error) console.log(error);
-                res.cookie("authToken",token);
+            (error, token) => {
+                if (error) console.log(error);
+                res.cookie("authToken", token);
+                res.json({ message: "Está mal, en algo" });
             }
-        ) 
+        )
     } catch (error) {
         console.log(error);
     }

@@ -11,6 +11,8 @@ import branchesRoutes from "./src/routes/branches.js";
 import reviewsRoutes from "./src/routes/reviews.js";
 import evaluationsRoutes from "./src/routes/evaluations.js";
 import registerEmployeesRoutes from "./src/routes/registerEmployee.js";
+import loginRoutes from "./src/routes/login.js";
+import logoutRoutes from "./src/routes/logout.js";
 
 // Creo una constante que es igual a la libreria que acabo de importar, y la ejecuto 
 
@@ -28,6 +30,8 @@ app.use("/api/branches/", branchesRoutes);
 app.use("/api/reviews/", reviewsRoutes);
 app.use("/api/evaluations/", evaluationsRoutes);
 app.use("/api/registerEmployees/",registerEmployeesRoutes);
+app.use("/api/login/", loginRoutes);
+app.use("/api/logout/", logoutRoutes);
 
 //Exporto esta constante para usar express en todos lados
 export default app;
