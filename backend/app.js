@@ -13,6 +13,7 @@ import evaluationsRoutes from "./src/routes/evaluations.js";
 import registerEmployeesRoutes from "./src/routes/registerEmployee.js";
 import loginRoutes from "./src/routes/login.js";
 import logoutRoutes from "./src/routes/logout.js";
+import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
 import registerClient from "./src/routes/registerClients.js"
 
 // Creo una constante que es igual a la libreria que acabo de importar, y la ejecuto 
@@ -29,6 +30,7 @@ app.use("/api/clients/", clientsRoutes);
 app.use("/api/employees/", employeesRoutes);
 app.use("/api/branches/", branchesRoutes);
 app.use("/api/reviews/", reviewsRoutes);
+app.use("/api/passwordRecovery/", passwordRecoveryRoutes);
 app.use("/api/evaluations/", evaluationsRoutes);
 app.use("/api/registerEmployees/",registerEmployeesRoutes);
 app.use("/api/login/", loginRoutes);
