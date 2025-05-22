@@ -45,4 +45,29 @@ blogController.createBlog = async (req, res) => {
         res.status(500).json({ message: 'Error creating blog' });
     }
 }
+
+blogController.updateBlog = async (req, res) => {
+        const { id } = req.params;
+        const { title, content } = req.body;
+        let updateData = { title, content };
+
+        if (req.file) {
+            // Subir nueva imagen a Cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: "public",
+                allowed_formats: ["jpg", "png", "jpeg"]
+            });
+            updateData.image = result.secure_url;
+        }
+
+        const updatedBlog = await blogModel.findByIdAndUpdate(id, updateData, { new: true });
+        res.json({ message: 'Blog updated successfully', blog: updatedBlog });
+};
+
+blogController.deleteBlog = async (req, res) => {
+        const { id } = req.params;
+        const deletedBlog = await blogModel.findByIdAndDelete(id);
+        res.json({ message: 'Blog deleted successfully' });
+};
+
 export default blogController;

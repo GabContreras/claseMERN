@@ -1,0 +1,226 @@
+/* App.css */
+:root {
+  /* Paleta principal */
+  --dark-background: #1c1717;
+  --darker-background: #161212;
+  --card-background: #2a2424;
+  --sidebar-bg: #002445; /* Color del sidebar azul oscuro */
+  --sidebar-active-bg: #0e2d55; /* Color de fondo para el elemento activo en el sidebar */
+  --xaelor-blue: #0e2d55; /* Azul de logo Xaelor */
+  --zgas-blue: #0e85d1; /* Azul principal para títulos y elementos destacados */
+  --zgas-green: #4ca950; /* Verde para botones de acción y elementos interactivos */
+  --zgas-green-light: #5dba61;
+  --zgas-green-dark: #3d8941;
+  
+  /* Colores de texto */
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #999999;
+  
+  /* Colores para bordes y separadores */
+  --border-color: #333;
+  --divider-color: #444;
+  
+  /* Colores de alerta */
+  --error-color: #ff4c4c;
+  --success-color: #4ca950;
+  --warning-color: #ffbb33;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--dark-background);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+.with-sidebar {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+}
+
+/* Estilos generales para páginas */
+.page-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+/* Estilos para el sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 220px;
+  background-color: var(--sidebar-bg);
+  color: var(--text-primary);
+  transition: width 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  background-color: var(--xaelor-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-header img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sidebar-nav {
+  margin-top: 1rem;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.sidebar-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav-item.active {
+  background-color: var(--sidebar-active-bg);
+  border-left: 3px solid var(--zgas-green);
+}
+
+.sidebar-nav-item-icon {
+  margin-right: 0.75rem;
+  color: var(--zgas-green);
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Botones y elementos interactivos */
+.btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--zgas-green);
+  color: var(--text-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--zgas-green-light);
+}
+
+.btn-secondary {
+  background-color: var(--zgas-blue);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(14, 133, 209, 0.8);
+}
+
+/* Tarjetas y contenedores */
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.card-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Estilos para animaciones de transición de página */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .with-sidebar {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+  
+  .sidebar {
+    width: 70px;
+  }
+  
+  .sidebar-nav-item-text {
+    display: none;
+  }
+  
+  .sidebar-nav-item {
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .sidebar-nav-item-icon {
+    margin-right: 0;
+    font-size: 1.2rem;
+  }
+}

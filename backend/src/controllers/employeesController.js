@@ -6,6 +6,7 @@
 
 const employeesController = {};
 import employeesModel from "../models/Employees.js";
+import bcryptjs from "bcryptjs";
 
 //SELECT
 employeesController.getEmployees = async (req, res) => {
@@ -22,8 +23,10 @@ employeesController.insertEmployee = async (req, res) => {
 //UPDATE
 employeesController.updateEmployee = async (req, res) => {
     const { name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified } = req.body;
-    const updateEmployees = await clientsModel.findByIdAndUpdate(req.params.id,
-        { name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified }, { new: true });
+        const passwordHash = await bcryptjs.hash(password, 10)
+
+    const updateEmployees = await employeesModel.findByIdAndUpdate(req.params.id,
+        { name, lastName, birthday, email, address, hireDate, password: passwordHash, telephone, dui, isssNumber, isVerified }, { new: true });
     res.json({ message: "Employee updated" });
 }
 

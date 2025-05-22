@@ -1,0 +1,167 @@
+/* SideNav.css */
+:root {
+  --sidenav-blue: #003060;         /* Azul más oscuro */
+  --sidenav-green: #4ca950;
+  --sidenav-celeste: #009bb3;
+  --sidenav-white: #ffffff;
+  --sidenav-bg-gradient: #003060;  /* Solo azul sólido */
+  --sidenav-hover: #357266;
+  --sidenav-active: #e6f7ff;
+  --sidenav-icon: #009bb3;
+  --sidenav-logout: #ff4c4c;
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  height: 100vh;
+  background: var(--sidenav-bg-gradient);
+  color: var(--sidenav-white);
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  box-shadow: 2px 0 10px rgba(149, 0, 255, 0.08);
+}
+
+.logo-container {
+  padding: 1.5rem 1rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  background: rgba(255,255,255,0.05);
+}
+
+.logo-container:hover {
+  background-color: rgba(0, 207, 255, 0.08);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  font-size: 2rem;
+  color: var(--sidenav-celeste);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--sidenav-white);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.nav-menu {
+  flex-grow: 1;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  width: 100%;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: var(--sidenav-white);
+  width: 100%;
+  border-left: 4px solid transparent;
+  background: transparent;
+}
+
+.nav-item:hover {
+  background-color: var(--sidenav-hover);
+  color: var(--sidenav-white);
+}
+
+.nav-item.active {
+  background-color: var(--sidenav-active);
+  color: var(--sidenav-blue);
+  border-left: 4px solid var(--sidenav-celeste);
+}
+
+.nav-icon {
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  min-width: 24px;
+  text-align: center;
+  color: var(--sidenav-icon);
+}
+
+.nav-item.active .nav-icon {
+  color: var(--sidenav-green);
+}
+
+.nav-text {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.logout-container {
+  margin-top: auto;
+  padding-bottom: 1rem;
+}
+
+.logout {
+  margin-top: 1rem;
+  color: var(--sidenav-white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 4px solid transparent;
+}
+
+.logout:hover {
+  background-color: var(--sidenav-logout);
+  color: var(--sidenav-white);
+}
+
+/* Estilos para la aplicación con sidebar */
+.with-sidebar {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    width: 70px;
+  }
+  .logo-text {
+    display: none;
+  }
+  .nav-text {
+    display: none;
+  }
+  .nav-icon {
+    margin-right: 0;
+    font-size: 1.5rem;
+  }
+  .nav-item {
+    justify-content: center;
+  }
+  .nav-item.active {
+    border-left-width: 2px;
+  }
+  .with-sidebar {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+}
