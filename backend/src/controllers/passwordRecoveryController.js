@@ -5,7 +5,7 @@ import clientsModel from "../models/Clients.js";
 import employeeModel from "../models/Employees.js";
 
 import { config } from "../config.js";
-import { sendMail, HTMLRecoveryEmail } from "../utils/MailPasswordRecovery.js";
+import { sendMail, HTMLRecoveryEmail } from "../utils/MailPasswordrecovery.js";
 
 //1- Creo un array de funciones
 const passwordRecoveryController = {};
