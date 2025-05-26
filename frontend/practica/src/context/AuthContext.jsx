@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-const SERVER_URL = "http://localhost:3333/api"; 
+const SERVER_URL = "https://clasemern.onrender.com/api"; 
 
 const AuthContext = createContext();
 

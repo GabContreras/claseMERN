@@ -19,7 +19,7 @@ export function useBlogManager() {
     const fetchBlogs = async () => {
         try {
             setIsLoading(true);
-            const response = await fetch('http://localhost:3333/api/blog');
+            const response = await fetch('https://clasemern.onrender.com/api/blog');
             if (!response.ok) throw new Error(`Error al cargar los blogs: ${response.status} ${response.statusText}`);
             const data = await response.json();
             setBlogs(data);
@@ -37,7 +37,7 @@ export function useBlogManager() {
         formData.append('content', content);
         if (image) formData.append('image', image);
 
-        return await fetch('http://localhost:3333/api/blog', {
+        return await fetch('https://clasemern.onrender.com/api/blog', {
             method: 'POST',
             body: formData,
         });
@@ -50,7 +50,7 @@ export function useBlogManager() {
         formData.append('content', content);
         if (image) formData.append('image', image);
 
-        return await fetch(`http://localhost:3333/api/blog/${currentBlogId}`, {
+        return await fetch(`https://clasemern.onrender.com/api/blog/${currentBlogId}`, {
             method: 'PUT',
             body: formData,
         });
@@ -93,7 +93,7 @@ export function useBlogManager() {
         if (!window.confirm('¿Estás seguro de que deseas eliminar este blog?')) return;
         try {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:3333/api/blog/${blogId}`, {
+            const response = await fetch(`https://clasemern.onrender.com/api/blog/${blogId}`, {
                 method: 'DELETE',
             });
             if (!response.ok) throw new Error(`Error al eliminar el blog: ${response.status} ${response.statusText}`);

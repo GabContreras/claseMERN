@@ -30,7 +30,7 @@ export function useBranchesManager() {
             setIsLoading(true);
             setError('');
             
-            const response = await authenticatedFetch('http://localhost:3333/api/branches');
+            const response = await authenticatedFetch('https://clasemern.onrender.com/api/branches');
             
             console.log('Respuesta del servidor:', response);
             
@@ -104,7 +104,7 @@ export function useBranchesManager() {
                 // Actualizar sucursal existente
                 console.log('Actualizando sucursal con ID:', currentBranchId);
                 
-                response = await authenticatedFetch(`http://localhost:3333/api/branches/${currentBranchId}`, {
+                response = await authenticatedFetch(`https://clasemern.onrender.com/api/branches/${currentBranchId}`, {
                     method: 'PUT',
                     body: JSON.stringify(branchData),
                 });
@@ -112,7 +112,7 @@ export function useBranchesManager() {
                 // Crear nueva sucursal
                 console.log('Creando nueva sucursal');
                 
-                response = await authenticatedFetch('http://localhost:3333/api/branches', {
+                response = await authenticatedFetch('https://clasemern.onrender.com/api/branches', {
                     method: 'POST',
                     body: JSON.stringify(branchData),
                 });
@@ -180,7 +180,7 @@ export function useBranchesManager() {
             
             console.log('Intentando eliminar sucursal con ID:', branchId);
             
-            const response = await authenticatedFetch(`http://localhost:3333/api/branches/${branchId}`, {
+            const response = await authenticatedFetch(`https://clasemern.onrender.com/api/branches/${branchId}`, {
                 method: 'DELETE',
             });
             

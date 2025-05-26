@@ -29,7 +29,7 @@ export function useProductsManager() {
             setIsLoading(true);
             setError('');
             
-            const response = await authenticatedFetch('http://localhost:3333/api/products');
+            const response = await authenticatedFetch('https://clasemern.onrender.com/api/products');
             
             console.log('Respuesta del servidor:', response);
             
@@ -56,7 +56,7 @@ export function useProductsManager() {
             price: parseFloat(price),
             stock: parseInt(stock)
         };
-        return await authenticatedFetch('http://localhost:3333/api/products', {
+        return await authenticatedFetch('https://clasemern.onrender.com/api/products', {
             method: 'POST',
             body: JSON.stringify(productData),
         });
@@ -70,7 +70,7 @@ export function useProductsManager() {
             price: parseFloat(price),
             stock: parseInt(stock)
         };
-        return await authenticatedFetch(`http://localhost:3333/api/products/${currentProductId}`, {
+        return await authenticatedFetch(`https://clasemern.onrender.com/api/products/${currentProductId}`, {
             method: 'PUT',
             body: JSON.stringify(productData),
         });
@@ -157,7 +157,7 @@ export function useProductsManager() {
             
             console.log('Intentando eliminar producto con ID:', productId);
             
-            const response = await authenticatedFetch(`http://localhost:3333/api/products/${productId}`, {
+            const response = await authenticatedFetch(`https://clasemern.onrender.com/api/products/${productId}`, {
                 method: 'DELETE',
             });
             
