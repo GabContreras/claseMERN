@@ -31,7 +31,7 @@ app.use(cookieParser());
 //MiddleWares 
 app.use(
     cors({
-        origin: "clase-mern-2r3d.vercel.app",
+        origin: "https://clase-mern-2r3d.vercel.app",
         //Permitir envío de cookies y credenciales
         credentials: true,
     })
