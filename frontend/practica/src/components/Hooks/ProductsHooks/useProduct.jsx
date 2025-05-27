@@ -29,7 +29,9 @@ export function useProductsManager() {
             setIsLoading(true);
             setError('');
             
-            const response = await authenticatedFetch('https://clasemern.onrender.com/api/products');
+            const response = await authenticatedFetch('https://clasemern.onrender.com/api/products', {
+                credentials: 'include'
+            });
             
             console.log('Respuesta del servidor:', response);
             
@@ -59,6 +61,7 @@ export function useProductsManager() {
         return await authenticatedFetch('https://clasemern.onrender.com/api/products', {
             method: 'POST',
             body: JSON.stringify(productData),
+            credentials: 'include'
         });
     };
 
@@ -73,6 +76,7 @@ export function useProductsManager() {
         return await authenticatedFetch(`https://clasemern.onrender.com/api/products/${currentProductId}`, {
             method: 'PUT',
             body: JSON.stringify(productData),
+            credentials: 'include'
         });
     };
 
@@ -159,6 +163,7 @@ export function useProductsManager() {
             
             const response = await authenticatedFetch(`https://clasemern.onrender.com/api/products/${productId}`, {
                 method: 'DELETE',
+                credentials: 'include'
             });
             
             console.log('Respuesta de eliminación:', response);

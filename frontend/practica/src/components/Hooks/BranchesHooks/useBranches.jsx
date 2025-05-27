@@ -103,18 +103,20 @@ export function useBranchesManager() {
             if (isEditing && currentBranchId) {
                 // Actualizar sucursal existente
                 console.log('Actualizando sucursal con ID:', currentBranchId);
-                
+
                 response = await authenticatedFetch(`https://clasemern.onrender.com/api/branches/${currentBranchId}`, {
                     method: 'PUT',
                     body: JSON.stringify(branchData),
+                    credentials: 'include'
                 });
             } else {
                 // Crear nueva sucursal
                 console.log('Creando nueva sucursal');
-                
+
                 response = await authenticatedFetch('https://clasemern.onrender.com/api/branches', {
                     method: 'POST',
                     body: JSON.stringify(branchData),
+                    credentials: 'include'
                 });
             }
             
@@ -182,6 +184,7 @@ export function useBranchesManager() {
             
             const response = await authenticatedFetch(`https://clasemern.onrender.com/api/branches/${branchId}`, {
                 method: 'DELETE',
+                credentials: 'include'
             });
             
             console.log('Respuesta de eliminación:', response);

@@ -45,7 +45,11 @@ loginController.login = async (req, res) => {
             { expiresIn: config.JWT.expiresIn }
 
         )
-        res.cookie("authToken", token);
+        res.cookie("authToken", token, {
+            httpOnly: true,
+            sameSite: "None", // o "Lax" si es mismo dominio
+            secure: true,     // solo si usas HTTPS
+        });
 
         // Prepara el objeto usuario para enviar solo lo necesario
         const userResponse = {
