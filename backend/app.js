@@ -36,10 +36,10 @@ app.use(
         credentials: true,
     })
 )
-app.use("/api/products/", productsRoutes);
+app.use("/api/products/", validateAuthToken(["employee", "admin"]), productsRoutes);
 app.use("/api/clients/", clientsRoutes);
 app.use("/api/employees/", employeesRoutes);
-app.use("/api/branches/", branchesRoutes);
+app.use("/api/branches/", validateAuthToken(["employee", "admin"]),branchesRoutes);
 app.use("/api/reviews/", validateAuthToken(["employee"]), reviewsRoutes);
 app.use("/api/passwordRecovery/", passwordRecoveryRoutes);
 app.use("/api/evaluations/", evaluationsRoutes);

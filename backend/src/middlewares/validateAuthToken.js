@@ -20,7 +20,7 @@ export const validateAuthToken = (allowedUserTypes = []) => {
             //4- Validar si el usuario tiene permisos para acceder a la ruta
             if (!allowedUserTypes.includes(decoded.userType)) {
                 return res.status(403).json({
-                    message: "Access denied"
+                    message: "Access denied", userPermission: decoded.userType
                 });
             }
             next();
