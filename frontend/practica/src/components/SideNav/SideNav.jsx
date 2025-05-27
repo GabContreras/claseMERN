@@ -13,7 +13,7 @@ function SideNav() {
     };
 
     const handleLogout = async () => {
-        await fetch('http://localhost:3333/api/logout', {
+        await fetch('https://clasemern.onrender.com/api/logout', {
             method: 'POST',
             credentials: 'include'
         });
