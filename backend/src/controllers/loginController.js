@@ -39,36 +39,31 @@ loginController.login = async (req, res) => {
         }
 
         //TOken
-        jsonWebToken.sign(
+        const token = jsonWebToken.sign(
             { id: userFound._id, userType },
             config.JWT.secret,
-            { expiresIn: config.JWT.expiresIn },
-            (error, token) => {
-                if (error) {
-                    console.log(error);
-                    return res.status(500).json({ message: "Error generando token" });
-                }
+            { expiresIn: config.JWT.expiresIn }
 
-                res.cookie("authToken", token);
+        )
+        res.cookie("authToken", token);
 
-                // Prepara el objeto usuario para enviar solo lo necesario
-                const userResponse = {
-                    id: userFound._id,
-                    email: userFound.email || userFound.correo, // usa el campo correcto según tu modelo
-                    userType
-                };
+        // Prepara el objeto usuario para enviar solo lo necesario
+        const userResponse = {
+            id: userFound._id,
+            email: userFound.email || userFound.correo, // usa el campo correcto según tu modelo
+            userType
+        };
 
-                res.json({
-                    message: "Login exitoso",
-                    token, // <-- ENVÍA EL TOKEN AQUÍ
-                    user: userResponse
-                });
-            }
-        );
+        res.json({
+            message: "Login exitoso",
+            token, // <-- ENVÍA EL TOKEN AQUÍ
+            user: userResponse
+        });
+    
 
     } catch (error) {
-        res.json({ message: "error: " + error.message });
-    }
+    res.json({ message: "error: " + error.message });
+}
 
 }
 
