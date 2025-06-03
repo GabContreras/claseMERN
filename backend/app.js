@@ -17,7 +17,7 @@ import logoutRoutes from "./src/routes/logout.js";
 import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
 import registerClient from "./src/routes/registerClients.js"
 import blogRoutes from "./src/routes/blog.js";
-
+import faqsRoutes from "./src/routes/faq.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 // Creo una constante que es igual a la libreria que acabo de importar, y la ejecuto 
 
@@ -48,6 +48,7 @@ app.use("/api/login/", loginRoutes);
 app.use("/api/logout/", logoutRoutes);
 app.use("/api/registerClient/", registerClient)
 app.use("/api/blog/", blogRoutes)
+app.use("/api/faqs/", faqsRoutes);
 
 //Exporto esta constante para usar express en todos lados
 export default app;
