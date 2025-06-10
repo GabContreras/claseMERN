@@ -1,0 +1,451 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Zgas",
+    "description": "API para proyecto Zgas",
+    "contact": {
+      "email": "you@your-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/ricaldone-29d/ZgasMERN/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "tags": [
+    {
+      "name": "admins",
+      "description": "Secured Admin-only calls"
+    },
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Select a productos",
+        "description": "Este método ayuda a visualizar todos los datos de la colección de Producto",
+        "operationId": "get-api-products",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update a products",
+        "description": "Aquí podemos actualizar los datos de un producto",
+        "operationId": "put-api-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "insert a products",
+        "description": "Con este método hacemos un insert a la colección de productos",
+        "operationId": "post-api-products",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/branches": {
+      "get": {
+        "tags": [
+          "Branches"
+        ],
+        "summary": "Select a Branches",
+        "description": "Sirve para hacer selects a la colección Branches",
+        "operationId": "get-api-brand",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Branches"
+        ],
+        "summary": "Update a Branches",
+        "description": "Acá se actualizan las ramas",
+        "operationId": "put-api-branches",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Branches"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Branches"
+        ],
+        "summary": "Insert a Branches",
+        "description": "Sirve para insertar rama en la colección Branches",
+        "operationId": "post-api-brand",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Branches"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/clients": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Get a Clients",
+        "description": "Acá se hace el select a la colección clients",
+        "operationId": "get-api-customers",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Put a Clients",
+        "description": "Acá se actualiza la información de los clientes",
+        "operationId": "put-api-clients",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Clients"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/products/{id}": {
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete a Products",
+        "description": "Acá se elimina un producto, se utiliza un id",
+        "operationId": "delete-api-products-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/branches/{id}": {
+      "delete": {
+        "tags": [
+          "Branches"
+        ],
+        "summary": "Delete a Branches",
+        "description": "Acá se eliminan las ramas, se utiliza un Id",
+        "operationId": "delete-api-branches-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/clients/{id}": {
+      "delete": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Delete a clients",
+        "description": "Acá se eliminan los clientes, se utiliza un id",
+        "operationId": "delete-api-clients-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Clients": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "aeu3rcnmw2xdh"
+            }
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "x-stoplight": {
+              "id": "f47ga1vvg7vsh"
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "2m43tappxgtyq"
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "skm4qduwoosja"
+            }
+          },
+          "telephone": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "e7if2mt7cdxgq"
+            }
+          },
+          "dui": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "z4wd6mzddggk9"
+            }
+          },
+          "isVerified": {
+            "type": "boolean",
+            "default": false,
+            "x-stoplight": {
+              "id": "syxwcnvqskxfs"
+            }
+          }
+        }
+      },
+      "Products": {
+        "title": "Products",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "24mmdnurd7ga9"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "s5zgoh1nr1fz6"
+            }
+          },
+          "price": {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "number",
+            "x-stoplight": {
+              "id": "64kc8lgomsm92"
+            }
+          },
+          "stock": {
+            "minimum": 0,
+            "type": "number",
+            "x-stoplight": {
+              "id": "hgvl82idpxdar"
+            }
+          }
+        }
+      },
+      "Branches": {
+        "title": "Branches",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "gthl613ti2gne"
+            }
+          },
+          "address": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "s6a71q6em73we"
+            }
+          },
+          "telephone": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "dk2sgh0vdexx5"
+            }
+          },
+          "schedule": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ef2eix721d8dx"
+            }
+          }
+        }
+      }
+    }
+  }
+}

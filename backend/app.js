@@ -21,6 +21,12 @@ import faqsRoutes from "./src/routes/faq.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 // Creo una constante que es igual a la libreria que acabo de importar, y la ejecuto 
 
+
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+import path from "path";
+
+
 const app = express();
 
 //Middleware para que acepte datos JSON
@@ -28,6 +34,14 @@ app.use(express.json());
 //Que acepte cookies en postman
 app.use(cookieParser());
 
+
+//Traemos el archivo json
+const swaggerDocument = JSON.parse(
+    fs.readFileSync(
+        path.resolve("./documentacion.json"),
+        "utf-8"
+    )
+);
 //MiddleWares 
 app.use(
     cors({
@@ -36,10 +50,13 @@ app.use(
         credentials: true,
     })
 )
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use("/api/products/", validateAuthToken(["employee", "admin"]), productsRoutes);
 app.use("/api/clients/", clientsRoutes);
 app.use("/api/employees/", employeesRoutes);
-app.use("/api/branches/", validateAuthToken(["employee", "admin"]),branchesRoutes);
+app.use("/api/branches/", validateAuthToken(["employee", "admin"]), branchesRoutes);
 app.use("/api/reviews/", validateAuthToken(["employee"]), reviewsRoutes);
 app.use("/api/passwordRecovery/", passwordRecoveryRoutes);
 app.use("/api/evaluations/", evaluationsRoutes);
