@@ -46,41 +46,6 @@
           }
         }
       },
-      "put": {
-        "tags": [
-          "Products"
-        ],
-        "summary": "Update a products",
-        "description": "Aquí podemos actualizar los datos de un producto",
-        "operationId": "put-api-products",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Products"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
       "post": {
         "tags": [
           "Products"
@@ -239,6 +204,49 @@
       }
     },
     "/api/products/{id}": {
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update a products",
+        "description": "Aquí podemos actualizar los datos de un producto",
+        "operationId": "put-api-products-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Products"
@@ -312,6 +320,44 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/employees": {
+      "get": {
+        "tags": [],
+        "summary": "Select a Employees",
+        "description": "Este método ayuda a visualizar todos los datos de la colección de Employees",
+        "operationId": "get-api-employees",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [],
+        "summary": "Your POST endpoint",
+        "operationId": "post-api-employees",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employees"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -442,6 +488,76 @@
             "type": "string",
             "x-stoplight": {
               "id": "ef2eix721d8dx"
+            }
+          }
+        }
+      },
+      "Employees": {
+        "title": "Employees",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "n33o3bk9v3yim"
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "pjit48ermc9b9"
+            }
+          },
+          "birthday": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "51q1oezykd4w7"
+            }
+          },
+          "email": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "akutwq04al7fs"
+            }
+          },
+          "address": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "qkxi65ak8ighg"
+            }
+          },
+          "hireDate": {
+            "type": "string",
+            "format": "date",
+            "x-stoplight": {
+              "id": "0mlp8y6dk5v15"
+            }
+          },
+          "telephone": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "by7pl4x4ugmgc"
+            }
+          },
+          "dui": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "c931ls66r1bd5"
+            }
+          },
+          "isssNumber": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jvgmkzg2exe3b"
+            }
+          },
+          "isVerified": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "yc45o0ahtzvt0"
             }
           }
         }

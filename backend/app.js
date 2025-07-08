@@ -18,6 +18,7 @@ import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
 import registerClient from "./src/routes/registerClients.js"
 import blogRoutes from "./src/routes/blog.js";
 import faqsRoutes from "./src/routes/faq.js";
+import salesRoutes from "./src/routes/salesRoutes.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 // Creo una constante que es igual a la libreria que acabo de importar, y la ejecuto 
 
@@ -53,10 +54,10 @@ app.use(
 
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use("/api/products/", validateAuthToken(["employee", "admin"]), productsRoutes);
-app.use("/api/clients/", clientsRoutes);
+//app.use("/api/products/", validateAuthToken(["employee", "admin"]), productsRoutes);
+//app.use("/api/clients/", clientsRoutes);
 app.use("/api/employees/", employeesRoutes);
-app.use("/api/branches/", validateAuthToken(["employee", "admin"]), branchesRoutes);
+//app.use("/api/branches/", validateAuthToken(["employee", "admin"]), branchesRoutes);
 app.use("/api/reviews/", validateAuthToken(["employee"]), reviewsRoutes);
 app.use("/api/passwordRecovery/", passwordRecoveryRoutes);
 app.use("/api/evaluations/", evaluationsRoutes);
@@ -66,6 +67,7 @@ app.use("/api/logout/", logoutRoutes);
 app.use("/api/registerClient/", registerClient)
 app.use("/api/blog/", blogRoutes)
 app.use("/api/faqs/", faqsRoutes);
+app.use("/api/sales/", validateAuthToken(["admin", "employee"]), salesRoutes);
 
 //Exporto esta constante para usar express en todos lados
 export default app;
