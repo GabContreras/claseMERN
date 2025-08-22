@@ -25,7 +25,7 @@ salesController.createSale = async (req, res) => {
 
         // Crear nueva venta
         const newSale = new salesModel({
-          product, category, customer, total
+            product, category, customer, total
         });
 
         await newSale.save();

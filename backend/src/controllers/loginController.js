@@ -29,14 +29,37 @@ loginController.login = async (req, res) => {
         if (!userFound) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         }
-        //2. Verificación de contraseña
-        //Solo si no es admin
+        //Primero verificamos si el usuario está bloqueado 
         if (userType !== "admin") {
+
+            //return res.json({val: (userFound.lockTime > Date.now()), diferencia: (Date.parse("2025-08-12T14:09:53.176+00:00") - Date.now()) / 60000});
+            if (Date.parse(userFound.lockTime) > Date.now()) {
+                const minutosRestantes = Math.ceil((userFound.lockTime - Date.now()) / 60000);
+                return res.status(403).json({ message: "Cuenta bloqueada, intenta de nuevo en:" + minutosRestantes + " minutos." });
+            }
+
             const isMatch = await bcrypt.compare(password, userFound.password);
             if (!isMatch) {
+
+                //Si se equivoca de contraseña, suma 1 a los intentos de login
+                userFound.loginAttempts = userFound.loginAttempts + 1; // Incrementa el contador de intentos
+
+                //Si sobrepasa los intentos permitidos, bloquea la cuenta
+                if (userFound.loginAttempts >= 5) {
+                    userFound.lockTime = Date.now() + 15 * 60000; // Bloquea la cuenta por un tiempo
+                    userFound.loginAttempts = 0;
+                    await userFound.save();
+                    return res.status(403).json({ message: "Cuenta bloqueada por 15 minutos." });
+
+                }
+                await userFound.save(); // Guarda los cambios en la base de datos
                 return res.status(401).json({ message: "Contraseña incorrecta" });
             }
+            userFound.loginAttempts = 0; // Reinicia los intentos de login si la contraseña es correcta
+            userFound.lockTime = null; // Reinicia el tiempo de bloqueo si la contraseña es correcta
+            await userFound.save(); // Guarda los cambios en la base de datos 
         }
+
 
         //TOken
         const token = jsonWebToken.sign(
@@ -63,11 +86,11 @@ loginController.login = async (req, res) => {
             token, // <-- ENVÍA EL TOKEN AQUÍ
             user: userResponse
         });
-    
+
 
     } catch (error) {
-    res.json({ message: "error: " + error.message });
-}
+        res.json({ message: "error: " + error.message });
+    }
 
 }
 
