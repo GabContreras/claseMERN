@@ -20,6 +20,7 @@ import blogRoutes from "./src/routes/blog.js";
 import faqsRoutes from "./src/routes/faq.js";
 import salesRoutes from "./src/routes/salesRoutes.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
+import limiter from "./src/middlewares/rateLimiter.js";
 // Creo una constante que es igual a la libreria que acabo de importar, y la ejecuto 
 
 
@@ -34,7 +35,7 @@ const app = express();
 app.use(express.json());
 //Que acepte cookies en postman
 app.use(cookieParser());
-
+app.use(limiter); // Aplica el limitador de velocidad a todas las rutas
 
 //Traemos el archivo json
 const swaggerDocument = JSON.parse(
@@ -54,7 +55,7 @@ app.use(
 
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-//app.use("/api/products/", validateAuthToken(["employee", "admin"]), productsRoutes);
+app.use("/api/products/", validateAuthToken(["employee", "admin"]), productsRoutes);
 //app.use("/api/clients/", clientsRoutes);
 app.use("/api/employees/", employeesRoutes);
 //app.use("/api/branches/", validateAuthToken(["employee", "admin"]), branchesRoutes);
